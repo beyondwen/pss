@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.devMode" value="true"/>
+
+    <package name="default" namespace="/" extends="struts-default">
+
+        <!-- <global-results>
+             <result name="error">/error.jsp</result>
+         </global-results>-->
+
+        <action name="*_*" class="{1}Action" method="{2}">
+            <result>/WEB-INF/view/{1}_list.jsp</result>
+            <result name="{2}">/WEB-INF/view/{1}_{2}.jsp</result>
+            <result name="reload" type="redirectAction">{1}</result>
+            <!--<result type="redirectAction">
+                <param name="actionName">HelloWorld</param>
+                <param name="namespace">/example</param>
+            </result>-->
+        </action>
+    </package>
+</struts>
