@@ -49,8 +49,8 @@ public abstract class BaseQuery {
             countHql.append(" where ").append(where);
             hql.append(" where ").append(where);
         } else {
-            countHql.append(" where ").append(where);
-            hql.append(" where ").append(where);
+            countHql.append(" and ").append(where);
+            hql.append(" and ").append(where);
         }
         paramList.addAll(Arrays.asList(objects));
     }
