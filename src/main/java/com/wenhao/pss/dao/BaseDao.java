@@ -41,11 +41,13 @@ public class BaseDao<T> extends HibernateDaoSupport {
 
     //此处分页需要使用hibernate的session来完成所以通过这样获得，方便Spring管理
     public PageResult<T> find(BaseQuery baseQuery) {
-        getHibernateTemplate().executeWithNativeSession(new HibernateCallback<Object>() {
+        /*getHibernateTemplate().executeWithNativeSession(new HibernateCallback<Object>() {
             public Object doInHibernate(Session session) throws HibernateException, SQLException {
                 return null;
             }
-        });
+        });*/
+        System.out.println(baseQuery.getCountHql());
+        System.out.println(baseQuery.getHql());
         return null;
     }
 

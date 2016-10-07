@@ -2,6 +2,9 @@ package com.wenhao.pss.service.impl;
 
 import com.wenhao.pss.dao.BaseDao;
 import com.wenhao.pss.domain.Employee;
+import com.wenhao.pss.page.BaseQuery;
+import com.wenhao.pss.page.EmployeeQuery;
+import com.wenhao.pss.page.PageResult;
 import com.wenhao.pss.service.IBaseService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import static org.junit.Assert.*;
  * Created by lenovo on 2016/10/07.
  */
 public class BaseServiceImplTest extends BaseServiceTest {
+
 
     @Autowired
     private IBaseService baseService;
@@ -54,6 +58,13 @@ public class BaseServiceImplTest extends BaseServiceTest {
         for (Employee e : employees) {
             System.out.println(e.getName());
         }
+    }
+
+    @Test
+    public void find() throws Exception {
+        EmployeeQuery employeeQuery = new EmployeeQuery();
+        PageResult<Employee> employeePageResult = baseService.find(employeeQuery);
+        System.out.println(employeePageResult);
     }
 
 }
