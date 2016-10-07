@@ -63,6 +63,8 @@ public class BaseServiceImplTest extends BaseServiceTest {
     @Test
     public void find() throws Exception {
         EmployeeQuery employeeQuery = new EmployeeQuery();
+        employeeQuery.setEmail("921790476@qq.com");
+        employeeQuery.setName("wenhao");
         PageResult<Employee> employeePageResult = baseService.find(employeeQuery);
         System.out.println(employeePageResult);
     }
