@@ -1,8 +1,14 @@
 package com.wenhao.pss.dao;
 
+import com.wenhao.pss.page.BaseQuery;
+import com.wenhao.pss.page.PageResult;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -31,6 +37,15 @@ public class BaseDao<T> extends HibernateDaoSupport {
 
     public List<T> getAll(Class<T> entityClass) {
         return this.getHibernateTemplate().loadAll(entityClass);
+    }
+
+    public PageResult<T> find(BaseQuery baseQuery) {
+        getHibernateTemplate().executeWithNativeSession(new HibernateCallback<Object>() {
+            public Object doInHibernate(Session session) throws HibernateException, SQLException {
+                return null;
+            }
+        });
+        return null;
     }
 
 }
