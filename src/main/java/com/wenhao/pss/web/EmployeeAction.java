@@ -1,6 +1,8 @@
 package com.wenhao.pss.web;
 
 import com.wenhao.pss.domain.Employee;
+import com.wenhao.pss.page.EmployeeQuery;
+import com.wenhao.pss.page.PageResult;
 import com.wenhao.pss.service.IEmployeeService;
 
 import java.util.List;
@@ -11,8 +13,9 @@ import java.util.List;
 public class EmployeeAction extends BaseAction {
 
     private IEmployeeService employeeService;
-    private List<Employee> employees;
+    private PageResult<Employee> pageResult;
     private Employee employee;
+    private EmployeeQuery baseQuery = new EmployeeQuery();
 
 
     public void setEmployeeService(IEmployeeService employeeService) {
@@ -22,7 +25,7 @@ public class EmployeeAction extends BaseAction {
     //列表
     @Override
     public String execute() throws Exception {
-        employees = employeeService.getAll();
+        this.pageResult = employeeService.find(baseQuery);
         return SUCCESS;
     }
 
@@ -53,8 +56,8 @@ public class EmployeeAction extends BaseAction {
         return RELOAD;
     }
 
-    public List<Employee> getEmployees() {
-        return employees;
+    public PageResult<Employee> getPageResult() {
+        return pageResult;
     }
 
     public Employee getEmployee() {
@@ -63,5 +66,13 @@ public class EmployeeAction extends BaseAction {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public EmployeeQuery getBaseQuery() {
+        return baseQuery;
+    }
+
+    public void setBaseQuery(EmployeeQuery baseQuery) {
+        this.baseQuery = baseQuery;
     }
 }
