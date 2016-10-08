@@ -43,8 +43,6 @@ public class BaseDao<T> extends HibernateDaoSupport {
     //此处分页需要使用hibernate的session来完成所以通过这样获得，方便Spring管理
     public PageResult<T> find(final BaseQuery baseQuery) {
         //通过匿名类来获得原生session
-        System.out.println(baseQuery.getCountHql());
-        System.out.println(baseQuery.getHql());
         Long countLong = getHibernateTemplate().executeWithNativeSession(new HibernateCallback<Long>() {
             public Long doInHibernate(Session session) throws HibernateException, SQLException {
                 Query query = session.createQuery(baseQuery.getCountHql());
@@ -52,7 +50,6 @@ public class BaseDao<T> extends HibernateDaoSupport {
                 return (Long) query.uniqueResult();
             }
         });
-        System.out.println(countLong.intValue());
         if (countLong.intValue() == 0) {
             return new PageResult<T>();
         }
@@ -60,10 +57,11 @@ public class BaseDao<T> extends HibernateDaoSupport {
 
         List<T> rows = getHibernateTemplate().executeWithNativeSession(new HibernateCallback<List<T>>() {
             public List<T> doInHibernate(Session session) throws HibernateException, SQLException {
-                Query query = session.createQuery(baseQuery.getCountHql());
+                Query query = session.createQuery(baseQuery.getHql());
                 buildQuery(query, baseQuery);
                 int firstResult = (pageResult.getCurrentPage() - 1) * pageResult.getPageSize();
                 int maxResult = pageResult.getPageSize();
+                query.setFirstResult(firstResult).setMaxResults(maxResult);
                 return query.list();
             }
         });

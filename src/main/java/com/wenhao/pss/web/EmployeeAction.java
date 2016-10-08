@@ -4,6 +4,7 @@ import com.wenhao.pss.domain.Employee;
 import com.wenhao.pss.page.EmployeeQuery;
 import com.wenhao.pss.page.PageResult;
 import com.wenhao.pss.service.IEmployeeService;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -25,6 +26,10 @@ public class EmployeeAction extends BaseAction {
     //列表
     @Override
     public String execute() throws Exception {
+        String name = baseQuery.getName();
+        if (StringUtils.isNotBlank(name)) {
+            baseQuery.setName("wenhao");
+        }
         this.pageResult = employeeService.find(baseQuery);
         return SUCCESS;
     }

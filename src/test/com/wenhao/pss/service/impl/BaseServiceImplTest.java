@@ -6,6 +6,7 @@ import com.wenhao.pss.page.BaseQuery;
 import com.wenhao.pss.page.EmployeeQuery;
 import com.wenhao.pss.page.PageResult;
 import com.wenhao.pss.service.IBaseService;
+import com.wenhao.pss.service.IEmployeeService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,6 +22,9 @@ public class BaseServiceImplTest extends BaseServiceTest {
 
     @Autowired
     private IBaseService baseService;
+
+    @Autowired
+    private IEmployeeService employeeService;
 
     @Test
     public void save() throws Exception {
@@ -63,11 +67,11 @@ public class BaseServiceImplTest extends BaseServiceTest {
     @Test
     public void find() throws Exception {
         EmployeeQuery employeeQuery = new EmployeeQuery();
-        employeeQuery.setEmail("921790476@qq.coom");
-        //employeeQuery.setName("wenhao");
+        //employeeQuery.setEmail("921790476@qq.coom");
+        employeeQuery.setName("roleAdmin");
         employeeQuery.setPageSize(-40);
         employeeQuery.setCurrentPage(-1);
-        PageResult<Employee> employeePageResult = baseService.find(employeeQuery);
+        PageResult<Employee> employeePageResult = employeeService.find(employeeQuery);
         System.out.println(employeePageResult);
     }
 

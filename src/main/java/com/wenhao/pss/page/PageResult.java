@@ -7,8 +7,8 @@ import java.util.List;
  * Created by lenovo on 2016/10/07.
  */
 public class PageResult<T> {
-    private int currentPage;//当前页
-    private int pageSize;//每页多少条
+    private int currentPage =1;//当前页
+    private int pageSize =10;//每页多少条
     private int totalCount;//总条数
     private int totalPage;//总共多少页
     private List<T> row = new ArrayList<T>();//每页的数据
