@@ -11,7 +11,7 @@ public class PageResult<T> {
     private int pageSize;//每页多少条
     private int totalCount;//总条数
     private int totalPage;//总共多少页
-    private List<T> rowList = new ArrayList<T>();//每页的数据
+    private List<T> row = new ArrayList<T>();//每页的数据
 
 
     public PageResult() {
@@ -57,12 +57,12 @@ public class PageResult<T> {
         this.totalPage = totalPage;
     }
 
-    public List<T> getRowList() {
-        return rowList;
+    public List<T> getRow() {
+        return row;
     }
 
-    public void setRowList(List<T> rowList) {
-        this.rowList = rowList;
+    public void setRow(List<T> row) {
+        this.row = row;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class PageResult<T> {
                 ", pageSize=" + pageSize +
                 ", totalCount=" + totalCount +
                 ", totalPage=" + totalPage +
-                ", rowList.size=" + rowList.size() +
+                ", row=" + row +
                 '}';
     }
 }

@@ -3,6 +3,7 @@ package com.wenhao.pss.dao;
 import com.wenhao.pss.page.BaseQuery;
 import com.wenhao.pss.page.PageResult;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
@@ -40,15 +41,41 @@ public class BaseDao<T> extends HibernateDaoSupport {
     }
 
     //此处分页需要使用hibernate的session来完成所以通过这样获得，方便Spring管理
-    public PageResult<T> find(BaseQuery baseQuery) {
-        /*getHibernateTemplate().executeWithNativeSession(new HibernateCallback<Object>() {
-            public Object doInHibernate(Session session) throws HibernateException, SQLException {
-                return null;
-            }
-        });*/
+    public PageResult<T> find(final BaseQuery baseQuery) {
+        //通过匿名类来获得原生session
         System.out.println(baseQuery.getCountHql());
         System.out.println(baseQuery.getHql());
-        return null;
+        Long countLong = getHibernateTemplate().executeWithNativeSession(new HibernateCallback<Long>() {
+            public Long doInHibernate(Session session) throws HibernateException, SQLException {
+                Query query = session.createQuery(baseQuery.getCountHql());
+                buildQuery(query, baseQuery);
+                return (Long) query.uniqueResult();
+            }
+        });
+        System.out.println(countLong.intValue());
+        if (countLong.intValue() == 0) {
+            return new PageResult<T>();
+        }
+        final PageResult<T> pageResult = new PageResult<T>(baseQuery.getCurrentPage(), baseQuery.getPageSize(), countLong.intValue());
+
+        List<T> rows = getHibernateTemplate().executeWithNativeSession(new HibernateCallback<List<T>>() {
+            public List<T> doInHibernate(Session session) throws HibernateException, SQLException {
+                Query query = session.createQuery(baseQuery.getCountHql());
+                buildQuery(query, baseQuery);
+                int firstResult = (pageResult.getCurrentPage() - 1) * pageResult.getPageSize();
+                int maxResult = pageResult.getPageSize();
+                return query.list();
+            }
+        });
+        pageResult.setRow(rows);
+        return pageResult;
+    }
+
+    private void buildQuery(Query query, BaseQuery baseQuery) {
+        int index = 0;
+        for (Object object : baseQuery.getParamList()) {
+            query.setParameter(index++, object);
+        }
     }
 
 }
