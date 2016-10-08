@@ -18,9 +18,11 @@ public class PageResult<T> {
     }
 
     public PageResult(int currentPage, int pageSize, int totalCount) {
-        this.currentPage = currentPage;
-        this.pageSize = pageSize;
         this.totalCount = totalCount;
+        ///////////////////////////////////////////////////
+        this.currentPage = currentPage < 1 ? 1 : currentPage;
+        this.pageSize = pageSize < 1 ? 10 : pageSize;
+        ///////////////////////////////////////////////////
         this.totalPage = (this.getTotalCount() + this.getPageSize() - 1) / this.getPageSize();
         this.currentPage = this.currentPage > this.getTotalPage() ? this.totalPage : this.currentPage;
     }
