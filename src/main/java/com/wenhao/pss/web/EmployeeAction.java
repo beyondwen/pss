@@ -26,10 +26,6 @@ public class EmployeeAction extends BaseAction {
     //列表
     @Override
     public String execute() throws Exception {
-        String name = baseQuery.getName();
-        if (StringUtils.isNotBlank(name)) {
-            baseQuery.setName("wenhao");
-        }
         this.pageResult = employeeService.find(baseQuery);
         return SUCCESS;
     }

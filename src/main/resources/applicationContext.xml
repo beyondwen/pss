@@ -41,7 +41,7 @@
 
     <bean id="employeeService" class="com.wenhao.pss.service.impl.EmployeeServiceImpl" parent="baseService"/>
 
-    <bean id="employeeAction" class="com.wenhao.pss.web.EmployeeAction">
+    <bean id="employeeAction" class="com.wenhao.pss.web.EmployeeAction" scope="prototype">
         <property name="employeeService" ref="employeeService"/>
     </bean>
 </beans>
