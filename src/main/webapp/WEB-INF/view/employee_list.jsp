@@ -57,9 +57,9 @@
                             <td></td>
                             <td><img src="images/icon_3.gif"/>
                                 <span style="line-height:12px; text-align:center;">
-	       <a class="xiu" href="employee_input.action?employee.id=${id}">修改</a>
+	       <a class="xiu" href="employee_input.action?id=${id}">修改</a>
 	       </span> <img src="/images/icon_04.gif"/> <span style="line-height:12px; text-align:center;">
-	       <a class="xiu" href="employee_delete.action?employee.id=${id}">删除</a></span></td>
+	       <a class="xiu" href="employee_delete.action?id=${id}">删除</a></span></td>
                         </tr>
                     </s:iterator>
                 </table>

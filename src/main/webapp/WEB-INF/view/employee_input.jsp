@@ -8,8 +8,9 @@
     <title>成都蓝源进销存系统(教学版)-员工编辑界面</title>
 </head>
 <body>
+<s:debug/>
 <s:form action="employee_save">
-    <s:hidden name="employee.id"/>
+    <s:hidden name="id"/>
     <div class="content-right">
         <div class="content-r-pic">
             <div style="margin:5px auto auto 12px;"><img src="images/canping.gif" width="138" height="17"/></div>
@@ -26,22 +27,24 @@
                         <tr bgcolor="#FFFFFF">
                             <td width="13%" height="30" align="center">用户名</td>
                             <td width="36%">
-                                <s:textfield name="employee.name" size="25"/>
+                                <s:textfield name="name" size="25"/>
                             </td>
                         </tr>
-                        <tr bgcolor="#FFFFFF">
-                            <td height="30" align="center">密码</td>
-                            <td>
-                                <s:password name="employee.password" size="25"/>
-                            </td>
-                        </tr>
+                        <s:if test="id==null">
+                            <tr bgcolor="#FFFFFF">
+                                <td height="30" align="center">密码</td>
+                                <td>
+                                    <s:password name="password" size="25"/>
+                                </td>
+                            </tr>
+                        </s:if>
                         <tr bgcolor="#FFFFFF">
                             <td height="30" align="center">年龄</td>
-                            <td><s:textfield name="employee.age" size="25"/></td>
+                            <td><s:textfield name="age" size="25"/></td>
                         </tr>
                         <tr bgcolor="#FFFFFF">
                             <td height="30" align="center">Email</td>
-                            <td><s:textfield name="employee.email" size="25"/></td>
+                            <td><s:textfield name="email" size="25"/></td>
                         </tr>
                     </table>
                 </div>

@@ -1,5 +1,7 @@
 package com.wenhao.pss.web;
 
+import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.Preparable;
 import com.wenhao.pss.domain.Employee;
 import com.wenhao.pss.page.EmployeeQuery;
 import com.wenhao.pss.page.PageResult;
@@ -11,12 +13,14 @@ import java.util.List;
 /**
  * Created by lenovo on 2016/10/07.
  */
-public class EmployeeAction extends BaseAction {
+public class EmployeeAction extends BaseAction implements ModelDriven, Preparable {
+
 
     private IEmployeeService employeeService;
     private PageResult<Employee> pageResult;
     private Employee employee;
     private EmployeeQuery baseQuery = new EmployeeQuery();
+    private Long id;
 
 
     public void setEmployeeService(IEmployeeService employeeService) {
@@ -33,7 +37,7 @@ public class EmployeeAction extends BaseAction {
     //新增或修改页面
     @Override
     public String input() throws Exception {
-        if (employee != null && employee.getId() != null) {
+        if (id != null) {
             this.employee = employeeService.get(employee.getId());
         }
         return INPUT;
@@ -41,7 +45,7 @@ public class EmployeeAction extends BaseAction {
 
     //保存
     public String save() {
-        if (employee.getId() == null) {
+        if (id == null) {
             employeeService.save(employee);
         } else {
             employeeService.update(employee);
@@ -51,8 +55,8 @@ public class EmployeeAction extends BaseAction {
 
     //删除
     public String delete() {
-        if (employee != null && employee.getId() != null) {
-            employeeService.delete(employee.getId());
+        if (id != null) {
+            employeeService.delete(id);
         }
         return RELOAD;
     }
@@ -61,19 +65,31 @@ public class EmployeeAction extends BaseAction {
         return pageResult;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
     public EmployeeQuery getBaseQuery() {
         return baseQuery;
     }
 
     public void setBaseQuery(EmployeeQuery baseQuery) {
         this.baseQuery = baseQuery;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Object getModel() {
+        return employee;
+    }
+
+    public void prepare() throws Exception {
+
+    }
+
+    public void prepareInput() throws Exception {
+
     }
 }
