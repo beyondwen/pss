@@ -38,13 +38,14 @@ public class EmployeeAction extends BaseAction implements ModelDriven, Preparabl
     @Override
     public String input() throws Exception {
         if (id != null) {
-            this.employee = employeeService.get(employee.getId());
+            this.employee = employeeService.get(id);
         }
         return INPUT;
     }
 
     //保存
     public String save() {
+        System.out.println("save");
         if (id == null) {
             employeeService.save(employee);
         } else {
@@ -90,6 +91,16 @@ public class EmployeeAction extends BaseAction implements ModelDriven, Preparabl
     }
 
     public void prepareInput() throws Exception {
+        if (id != null) {
+            this.employee = employeeService.get(id);
+        }
+    }
 
+    public void prepareSave() throws Exception {
+        if (id != null) {
+            this.employee = employeeService.get(id);
+        } else {
+            employee = new Employee();
+        }
     }
 }

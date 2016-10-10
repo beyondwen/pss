@@ -11,11 +11,7 @@
     <constant name="struts.ui.theme" value="simple"/>
 
     <package name="default" namespace="/" extends="struts-default">
-
-        <!-- <global-results>
-             <result name="error">/error.jsp</result>
-         </global-results>-->
-
+        <default-interceptor-ref name="paramsPrepareParamsStack"/>
 
         <!--主页面-->
         <action name="main">
@@ -32,10 +28,6 @@
             <result>/WEB-INF/view/{1}_list.jsp</result>
             <result name="{2}">/WEB-INF/view/{1}_{2}.jsp</result>
             <result name="reload" type="redirectAction">{1}</result>
-            <!--<result type="redirectAction">
-                <param name="actionName">HelloWorld</param>
-                <param name="namespace">/example</param>
-            </result>-->
         </action>
     </package>
 </struts>
