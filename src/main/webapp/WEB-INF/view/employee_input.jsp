@@ -8,7 +8,6 @@
     <title>成都蓝源进销存系统(教学版)-员工编辑界面</title>
 </head>
 <body>
-<s:debug/>
 <s:form action="employee_save">
     <s:hidden name="id"/>
     <div class="content-right">

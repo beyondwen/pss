@@ -13,14 +13,11 @@ import java.util.List;
 /**
  * Created by lenovo on 2016/10/07.
  */
-public class EmployeeAction extends BaseAction implements ModelDriven, Preparable {
-
-
+public class EmployeeAction extends CRUDAction {
     private IEmployeeService employeeService;
     private PageResult<Employee> pageResult;
     private Employee employee;
     private EmployeeQuery baseQuery = new EmployeeQuery();
-    private Long id;
 
 
     public void setEmployeeService(IEmployeeService employeeService) {
@@ -29,14 +26,14 @@ public class EmployeeAction extends BaseAction implements ModelDriven, Preparabl
 
     //列表
     @Override
-    public String execute() throws Exception {
+    public String list() {
         this.pageResult = employeeService.find(baseQuery);
         return SUCCESS;
     }
 
     //新增或修改页面
     @Override
-    public String input() throws Exception {
+    public String input() {
         if (id != null) {
             this.employee = employeeService.get(id);
         }
@@ -44,8 +41,8 @@ public class EmployeeAction extends BaseAction implements ModelDriven, Preparabl
     }
 
     //保存
+    @Override
     public String save() {
-        System.out.println("save");
         if (id == null) {
             employeeService.save(employee);
         } else {
@@ -55,6 +52,7 @@ public class EmployeeAction extends BaseAction implements ModelDriven, Preparabl
     }
 
     //删除
+    @Override
     public String delete() {
         if (id != null) {
             employeeService.delete(id);
@@ -74,29 +72,18 @@ public class EmployeeAction extends BaseAction implements ModelDriven, Preparabl
         this.baseQuery = baseQuery;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Object getModel() {
         return employee;
     }
 
-    public void prepare() throws Exception {
-
-    }
-
-    public void prepareInput() throws Exception {
+    public void beforeInput() {
         if (id != null) {
             this.employee = employeeService.get(id);
         }
     }
 
-    public void prepareSave() throws Exception {
+    public void beforeSave() {
         if (id != null) {
             this.employee = employeeService.get(id);
         } else {
