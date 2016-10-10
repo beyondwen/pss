@@ -30,18 +30,5 @@
         </property>
         <property name="mappingLocations" value="classpath:/domain/*.hbm.xml"/>
     </bean>
-
-    <bean id="baseDao" class="com.wenhao.pss.dao.BaseDao">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-
-    <bean id="baseService" abstract="true" class="com.wenhao.pss.service.impl.BaseServiceImpl">
-        <property name="baseDao" ref="baseDao"/>
-    </bean>
-
-    <bean id="employeeService" class="com.wenhao.pss.service.impl.EmployeeServiceImpl" parent="baseService"/>
-
-    <bean id="employeeAction" class="com.wenhao.pss.web.EmployeeAction" scope="prototype">
-        <property name="employeeService" ref="employeeService"/>
-    </bean>
+    <import resource="classpath:manger/*Context.xml"/>
 </beans>

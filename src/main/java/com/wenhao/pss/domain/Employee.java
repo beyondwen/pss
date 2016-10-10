@@ -8,6 +8,7 @@ public class Employee extends EnityId {
     private String password;
     private String email;
     private Integer age;
+    private Department department_id;
 
     public String getName() {
         return name;
@@ -39,5 +40,23 @@ public class Employee extends EnityId {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public Department getDepartment_id() {
+        return department_id;
+    }
+
+    public void setDepartment_id(Department department_id) {
+        this.department_id = department_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                '}';
     }
 }

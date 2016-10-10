@@ -11,5 +11,6 @@
 		<property name="password"/>
 		<property name="email"/>
 		<property name="age"/>
+		<many-to-one name="department_id" class="Department"/>
 	</class>
 </hibernate-mapping>
