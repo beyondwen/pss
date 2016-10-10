@@ -54,7 +54,7 @@
                             <td>${name}</td>
                             <td>${age}</td>
                             <td>${email}</td>
-                            <td></td>
+                            <td>${department_id.name}</td>
                             <td><img src="images/icon_3.gif"/>
                                 <span style="line-height:12px; text-align:center;">
 	       <a class="xiu" href="employee_input.action?id=${id}">修改</a>

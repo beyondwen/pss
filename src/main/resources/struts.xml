@@ -9,7 +9,7 @@
     <constant name="struts.devMode" value="true"/>
     <!--主题样式-->
     <constant name="struts.ui.theme" value="simple"/>
-
+    <constant name="struts.action.extension" value="action,,"/>
     <package name="default" namespace="/" extends="struts-default">
         <default-interceptor-ref name="paramsPrepareParamsStack"/>
 
