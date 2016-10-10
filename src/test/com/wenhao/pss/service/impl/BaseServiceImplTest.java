@@ -2,7 +2,11 @@ package com.wenhao.pss.service.impl;
 
 import com.wenhao.pss.dao.BaseDao;
 import com.wenhao.pss.domain.Employee;
+import com.wenhao.pss.page.BaseQuery;
+import com.wenhao.pss.page.EmployeeQuery;
+import com.wenhao.pss.page.PageResult;
 import com.wenhao.pss.service.IBaseService;
+import com.wenhao.pss.service.IEmployeeService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,8 +19,12 @@ import static org.junit.Assert.*;
  */
 public class BaseServiceImplTest extends BaseServiceTest {
 
+
     @Autowired
     private IBaseService baseService;
+
+    @Autowired
+    private IEmployeeService employeeService;
 
     @Test
     public void save() throws Exception {
@@ -54,6 +62,15 @@ public class BaseServiceImplTest extends BaseServiceTest {
         for (Employee e : employees) {
             System.out.println(e.getName());
         }
+    }
+
+    @Test
+    public void find() throws Exception {
+        EmployeeQuery employeeQuery = new EmployeeQuery();
+        //employeeQuery.setEmail("921790476@qq.coom");
+        employeeQuery.setName("roleAdmin");
+        PageResult<Employee> employeePageResult = employeeService.find(employeeQuery);
+        System.out.println(employeePageResult);
     }
 
 }

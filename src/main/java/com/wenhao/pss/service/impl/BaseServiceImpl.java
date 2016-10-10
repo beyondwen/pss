@@ -1,6 +1,8 @@
 package com.wenhao.pss.service.impl;
 
 import com.wenhao.pss.dao.BaseDao;
+import com.wenhao.pss.page.BaseQuery;
+import com.wenhao.pss.page.PageResult;
 import com.wenhao.pss.service.IBaseService;
 
 import java.io.Serializable;
@@ -48,5 +50,9 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T> {
 
     public List<T> getAll() {
         return (List<T>) baseDao.getAll(entiyClass);
+    }
+
+    public PageResult<T> find(BaseQuery baseQuery) {
+        return baseDao.find(baseQuery);
     }
 }

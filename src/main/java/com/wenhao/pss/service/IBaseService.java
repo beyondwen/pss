@@ -1,5 +1,8 @@
 package com.wenhao.pss.service;
 
+import com.wenhao.pss.page.BaseQuery;
+import com.wenhao.pss.page.PageResult;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -16,4 +19,6 @@ public interface IBaseService<T> {
     T get(Serializable id);
 
     List<T> getAll();
+
+    PageResult<T> find(BaseQuery baseQuery);
 }

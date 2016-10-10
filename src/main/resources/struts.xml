@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.devMode" value="true"/>
+    <!--主题样式-->
+    <constant name="struts.ui.theme" value="simple"/>
+
+    <package name="default" namespace="/" extends="struts-default">
+        <!--主页面-->
+        <action name="main">
+            <result>/WEB-INF/view/main.jsp</result>
+        </action>
+        <!--右侧-->
+        <action name="right">
+            <result>/WEB-INF/view/right.jsp</result>
+        </action>
+        <!--employeeAction-->
+        <action name="*_*" class="{1}Action" method="{2}">
+            <result>/WEB-INF/view/{1}_list.jsp</result>
+            <result name="{2}">/WEB-INF/view/{1}_{2}.jsp</result>
+            <result name="reload" type="redirectAction">{1}</result>
+        </action>
+    </package>
+</struts>
