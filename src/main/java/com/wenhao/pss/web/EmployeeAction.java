@@ -49,10 +49,16 @@ public class EmployeeAction extends CRUDAction {
     @Override
     @InputConfig(methodName = "input")
     public String save() {
-        if (id == null) {
-            employeeService.save(employee);
-        } else {
-            employeeService.update(employee);
+        try {
+            if (id == null) {
+                employeeService.save(employee);
+            } else {
+                employeeService.update(employee);
+            }
+            int i = 1 / 0;
+        } catch (Exception e) {
+            addActionError("异常" + e.getMessage());
+            return input();
         }
         return RELOAD;
     }
