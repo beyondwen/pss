@@ -45,6 +45,12 @@ public class EmployeeAction extends CRUDAction {
         return INPUT;
     }
 
+    public void validateSave() {
+        if (StringUtils.isBlank(employee.getName())) {
+            addFieldError(employee.getName(),"用户名必须填写");
+        }
+    }
+
     //保存
     @Override
     @InputConfig(methodName = "input")
