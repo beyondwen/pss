@@ -11,7 +11,16 @@
     <constant name="struts.ui.theme" value="simple"/>
     <constant name="struts.action.extension" value="action,,"/>
     <package name="default" namespace="/" extends="struts-default">
-        <default-interceptor-ref name="paramsPrepareParamsStack"/>
+        <interceptors>
+            <interceptor-stack name="pssStack">
+                <interceptor-ref name="paramsPrepareParamsStack"/>
+                <interceptor-ref name="store">
+                    <param name="operationMode">AUTOMATIC</param>
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="pssStack"/>
 
         <!--主页面-->
         <action name="main">

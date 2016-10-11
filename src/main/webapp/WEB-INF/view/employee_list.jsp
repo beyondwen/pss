@@ -9,6 +9,7 @@
 </head>
 <body>
 <s:form action="employee">
+    <%@include file="message.jsp" %>
     <div class="content-right">
         <div class="content-r-pic">
             <div style="margin:8px auto auto 12px;"><img src="images/ping.gif" width="138" height="17"/></div>

@@ -52,10 +52,11 @@ public class EmployeeAction extends CRUDAction {
         try {
             if (id == null) {
                 employeeService.save(employee);
+                addActionMessage("保存成功");
             } else {
                 employeeService.update(employee);
+                addActionMessage("更新成功");
             }
-            int i = 1 / 0;
         } catch (Exception e) {
             addActionError("异常" + e.getMessage());
             return input();
@@ -68,6 +69,7 @@ public class EmployeeAction extends CRUDAction {
     public String delete() {
         if (id != null) {
             employeeService.delete(id);
+            addActionMessage("删除成功");
         }
         return RELOAD;
     }
