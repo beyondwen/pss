@@ -8,6 +8,7 @@
     <title>成都蓝源进销存系统(教学版)-员工编辑界面</title>
 </head>
 <body>
+<s:fielderror/>
 <s:form action="employee_save">
     <s:hidden name="id"/>
     <div class="content-right">
@@ -44,6 +45,12 @@
                         <tr bgcolor="#FFFFFF">
                             <td height="30" align="center">Email</td>
                             <td><s:textfield name="email" size="25"/></td>
+                        </tr>
+                        <tr bgcolor="#FFFFFF">
+                            <td height="30" align="center">部门</td>
+                            <td>
+                                <s:select list="#allDepts" name="department_id.id" listKey="id" listValue="name"/>
+                            </td>
                         </tr>
                     </table>
                 </div>

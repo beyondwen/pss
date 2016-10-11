@@ -2,9 +2,11 @@ package com.wenhao.pss.web;
 
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
+import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 import com.wenhao.pss.domain.Employee;
 import com.wenhao.pss.page.EmployeeQuery;
 import com.wenhao.pss.page.PageResult;
+import com.wenhao.pss.service.IDepartmentService;
 import com.wenhao.pss.service.IEmployeeService;
 import org.apache.commons.lang3.StringUtils;
 
@@ -15,6 +17,7 @@ import java.util.List;
  */
 public class EmployeeAction extends CRUDAction {
     private IEmployeeService employeeService;
+    private IDepartmentService departmentService;
     private PageResult<Employee> pageResult;
     private Employee employee;
     private EmployeeQuery baseQuery = new EmployeeQuery();
@@ -22,6 +25,10 @@ public class EmployeeAction extends CRUDAction {
 
     public void setEmployeeService(IEmployeeService employeeService) {
         this.employeeService = employeeService;
+    }
+
+    public void setDepartmentService(IDepartmentService departmentService) {
+        this.departmentService = departmentService;
     }
 
     //列表
@@ -34,14 +41,13 @@ public class EmployeeAction extends CRUDAction {
     //新增或修改页面
     @Override
     public String input() {
-        if (id != null) {
-            this.employee = employeeService.get(id);
-        }
+        putContext("allDepts", departmentService.getAll());
         return INPUT;
     }
 
     //保存
     @Override
+    @InputConfig(methodName = "input")
     public String save() {
         if (id == null) {
             employeeService.save(employee);

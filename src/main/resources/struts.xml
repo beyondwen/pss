@@ -26,6 +26,7 @@
         <!--employeeAction-->
         <action name="*_*" class="{1}Action" method="{2}">
             <result>/WEB-INF/view/{1}_list.jsp</result>
+            <result name="input">/WEB-INF/view/{1}_input.jsp</result>
             <result name="{2}">/WEB-INF/view/{1}_{2}.jsp</result>
             <result name="reload" type="redirectAction">{1}</result>
         </action>

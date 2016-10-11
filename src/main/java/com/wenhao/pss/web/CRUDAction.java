@@ -25,7 +25,10 @@ public abstract class CRUDAction extends BaseAction implements ModelDriven, Prep
 
     public abstract String list();
 
-    public abstract String input();
+    @Override
+    public String input() throws Exception {
+        return INPUT;
+    }
 
     public abstract String save();
 

@@ -1,5 +1,6 @@
 package com.wenhao.pss.web;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -8,4 +9,8 @@ import com.opensymphony.xwork2.ActionSupport;
 public abstract class BaseAction extends ActionSupport {
 
     public static final String RELOAD = "reload";
+
+    protected void putContext(String key,Object o){
+        ActionContext.getContext().put(key, o);
+    }
 }
