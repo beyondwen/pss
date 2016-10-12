@@ -5,11 +5,24 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
     <link href="css/index.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="/js/validate/css/screen.css"/>
+    <script src="/js/validate/jquery.js" type="text/javascript"></script>
+    <script src="/js/validate/jquery.validate.js" type="text/javascript"></script>
+    <script src="/js/validate/messages_cn.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $().ready(function () {
+            $("#employeeForm").validate({
+                rules: {
+                    name: "required"
+                }
+            })
+        })
+    </script>
     <title>成都蓝源进销存系统(教学版)-员工编辑界面</title>
 </head>
 <body>
 <%@include file="message.jsp" %>
-<s:form action="employee_save">
+<s:form id="employeeForm" action="employee_save">
     <s:hidden name="id"/>
     <div class="content-right">
         <div class="content-r-pic">
