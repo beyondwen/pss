@@ -13,8 +13,34 @@
         $().ready(function () {
             $("#employeeForm").validate({
                 rules: {
-                    name: "required"
+                    name: {
+                        required: true,
+                        minlength: 2
+                    },
+                    password: {
+                        required: true,
+                        minlength: 5
+                    },
+                    confirmpassword: {
+                        required: true,
+                        minlength: 5,
+                        equalTo: "#password"
+                    },
+                    age:{
+                        required: true,
+                        range:[18,50]
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    }
+                },
+                messages:{
+                    confirmpassword: {
+                        equalTo: "两次密码要一致"
+                    }
                 }
+
             })
         })
     </script>
@@ -47,7 +73,13 @@
                             <tr bgcolor="#FFFFFF">
                                 <td height="30" align="center">密码</td>
                                 <td>
-                                    <s:password name="password" size="25"/>
+                                    <s:password id="password" name="password" size="25"/>
+                                </td>
+                            </tr>
+                            <tr bgcolor="#FFFFFF">
+                                <td height="30" align="center">确认密码</td>
+                                <td>
+                                    <input type="password" name="confirmpassword" size="25"/>
                                 </td>
                             </tr>
                         </s:if>
