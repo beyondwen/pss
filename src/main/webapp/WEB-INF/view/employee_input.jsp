@@ -49,7 +49,8 @@
                         <tr bgcolor="#FFFFFF">
                             <td height="30" align="center">部门</td>
                             <td>
-                                <s:select list="#allDepts" name="department_id.id" listKey="id" listValue="name"/>
+                                <s:select list="#allDepts" name="department_id.id" listKey="id" listValue="name"
+                                          headerKey="-1" headerValue="--请选择--"/>
                             </td>
                         </tr>
                     </table>

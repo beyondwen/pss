@@ -3,6 +3,7 @@ package com.wenhao.pss.web;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
+import com.wenhao.pss.domain.Department;
 import com.wenhao.pss.domain.Employee;
 import com.wenhao.pss.page.EmployeeQuery;
 import com.wenhao.pss.page.PageResult;
@@ -47,7 +48,7 @@ public class EmployeeAction extends CRUDAction {
 
     public void validateSave() {
         if (StringUtils.isBlank(employee.getName())) {
-            addFieldError(employee.getName(),"用户名必须填写");
+            addFieldError(employee.getName(), "用户名必须填写");
         }
     }
 
@@ -55,6 +56,10 @@ public class EmployeeAction extends CRUDAction {
     @Override
     @InputConfig(methodName = "input")
     public String save() {
+        Department department = employee.getDepartment_id();
+        if (department != null && department.getId() != null && department.getId() == -1L) {
+            employee.setDepartment_id(null);
+        }
         try {
             if (id == null) {
                 employeeService.save(employee);
@@ -104,10 +109,11 @@ public class EmployeeAction extends CRUDAction {
     }
 
     public void beforeSave() {
-        if (id != null) {
-            this.employee = employeeService.get(id);
-        } else {
+        if (id == null) {
             employee = new Employee();
+        } else {
+            this.employee = employeeService.get(id);
+            employee.setDepartment_id(null);
         }
     }
 }
