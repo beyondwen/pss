@@ -14,7 +14,7 @@
             <div style="margin:8px auto auto 12px;"><img src="images/ping.gif" width="138" height="17"/></div>
         </div>
         <div class="content-text">
-        <%@include file="message.jsp" %>
+            <%@include file="message.jsp" %>
             <div class="square-o-top">
                 <table width="100%" border="0" cellpadding="0" cellspacing="0"
                        style="font-size:14px; font-weight:bold; font-family:" 黑体
@@ -32,7 +32,10 @@
                         <s:textfield name="baseQuery.email"/>
                     </td>
                     <td width="52">部门:</td>
-                    <td width="149"><select name="" size="1" class="kuan">&nbsp;</select></td>
+                    <td width="149">
+                        <s:select list="#allDepts" name="baseQuery.deptId" listKey="id" listValue="name"
+                                  headerKey="-1" headerValue="--请选择--"/>
+                    </td>
                     <td width="85"><input type="image" src="/images/can_b_01.gif"/></td>
                     <td width="136"><a href="employee_input.action"><img src="/images/can_b_02.gif" border="0"/></a>
                     </td>

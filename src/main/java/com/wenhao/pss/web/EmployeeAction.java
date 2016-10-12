@@ -35,6 +35,7 @@ public class EmployeeAction extends CRUDAction {
     //列表
     @Override
     public String list() {
+        putContext("allDepts", departmentService.getAll());
         this.pageResult = employeeService.find(baseQuery);
         return SUCCESS;
     }

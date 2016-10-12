@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 public class EmployeeQuery extends BaseQuery {
     private String name;
 
-    private long deptId;
+    private Long deptId;
 
     private String email;
 
@@ -23,6 +23,9 @@ public class EmployeeQuery extends BaseQuery {
         }
         if (StringUtils.isNotBlank(email)) {
             addWhere(" o.email like ?", "%" + email + "%");
+        }
+        if (deptId != null && deptId != -1L) {
+            addWhere(" o.department_id.id=?", deptId);
         }
     }
 
