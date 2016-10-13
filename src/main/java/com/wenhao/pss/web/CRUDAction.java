@@ -2,6 +2,7 @@ package com.wenhao.pss.web;
 
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
+import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
 /**
  * Created by Administrator on 2016/10/10 0010.
@@ -18,6 +19,7 @@ public abstract class CRUDAction extends BaseAction implements ModelDriven, Prep
     }
 
     @Override
+    @InputConfig(methodName = "execute")
     public String execute() throws Exception {
         list();
         return SUCCESS;

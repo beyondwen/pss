@@ -5,10 +5,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
     <link href="css/index.css" rel="stylesheet" type="text/css"/>
+    <script src="/js/validate/jquery.js" type="text/javascript"></script>
+    <script src="/js/commons.js" type="text/javascript"></script>
     <title>成都蓝源进销存系统(教学版)-员工列表页</title>
 </head>
 <body>
-<s:form action="employee">
+<s:form id="domainForm" action="employee">
     <div class="content-right">
         <div class="content-r-pic">
             <div style="margin:8px auto auto 12px;"><img src="images/ping.gif" width="138" height="17"/></div>

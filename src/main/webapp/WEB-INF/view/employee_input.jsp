@@ -9,45 +9,8 @@
     <script src="/js/validate/jquery.js" type="text/javascript"></script>
     <script src="/js/validate/jquery.validate.js" type="text/javascript"></script>
     <script src="/js/validate/messages_cn.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $().ready(function () {
-            $("#employeeForm").validate({
-                rules: {
-                    name: {
-                        required: true,
-                        minlength: 2,
-                        remote:"employee_check.action?id="+$("#id").val()
-                    },
-                    password: {
-                        required: true,
-                        minlength: 5
-                    },
-                    confirmpassword: {
-                        required: true,
-                        minlength: 5,
-                        equalTo: "#password"
-                    },
-                    age:{
-                        required: true,
-                        range:[18,50]
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    }
-                },
-                messages:{
-                    confirmpassword: {
-                        equalTo: "两次密码要一致"
-                    },
-                    name: {
-                        remote: "该用户名已存在"
-                    }
-                }
+    <script src="/js/employee.js" type="text/javascript"></script>
 
-            })
-        })
-    </script>
     <title>成都蓝源进销存系统(教学版)-员工编辑界面</title>
 </head>
 <body>
@@ -108,18 +71,18 @@
                     <div style="margin:1px auto auto 1px;">
                         <table width="100%" border="0" cellpadding="0" cellspacing="0">
                             <tr>
-                                <td><input type="image" src="images/order_tuo.gif" border="0"/></td>
+                                <td><input type="image" src="/images/order_tuo.gif" border="0"/></td>
                                 <td>&nbsp;</td>
-                                <td><a href="#"><img src="images/order_tuo.gif" border="0"/></a></td>
+                                <td><img id="resetBtn"  src="/images/order_tuo.gif" border="0"/></td>
                                 <td>&nbsp;</td>
-                                <td><a href="#"><img src="images/order_tuo.gif" border="0"/></a></td>
+                                <td><img id="cancelBtn"  src="/images/order_tuo.gif" border="0"/></td>
                             </tr>
                         </table>
                     </div>
                 </div>
             </div><!--"square-order"end-->
         </div><!--"content-text"end-->
-        <div class="content-bbg"><img src="images/content_bbg.jpg"/></div>
+        <div class="content-bbg"><img src="/images/content_bbg.jpg"/></div>
     </div>
     <!--"content-right"end-->
 </s:form>

@@ -36,11 +36,5 @@
     </table>
 </div>
 </div>
-<script type="text/javascript">
-    function go(no) {
-        document.getElementById("pageNo").value = no;
-        document.forms[0].submit();
-    }
-</script>
 </body>
 </html>
