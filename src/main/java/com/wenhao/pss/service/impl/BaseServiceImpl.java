@@ -17,7 +17,7 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T> {
 
     private Class<T> entiyClass;
 
-    private BaseDao baseDao;
+    protected BaseDao baseDao;
 
     public void setBaseDao(BaseDao baseDao) {
         this.baseDao = baseDao;

@@ -15,7 +15,8 @@
                 rules: {
                     name: {
                         required: true,
-                        minlength: 2
+                        minlength: 2,
+                        remote:"employee_check.action?id="+$("#id").val()
                     },
                     password: {
                         required: true,
@@ -38,6 +39,9 @@
                 messages:{
                     confirmpassword: {
                         equalTo: "两次密码要一致"
+                    },
+                    name: {
+                        remote: "该用户名已存在"
                     }
                 }
 
@@ -49,7 +53,7 @@
 <body>
 <%@include file="message.jsp" %>
 <s:form id="employeeForm" action="employee_save">
-    <s:hidden name="id"/>
+    <s:hidden id="id" name="id"/>
     <div class="content-right">
         <div class="content-r-pic">
             <div style="margin:5px auto auto 12px;"><img src="images/canping.gif" width="138" height="17"/></div>

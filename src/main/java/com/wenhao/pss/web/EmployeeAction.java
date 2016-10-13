@@ -1,5 +1,6 @@
 package com.wenhao.pss.web;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
@@ -10,7 +11,13 @@ import com.wenhao.pss.page.PageResult;
 import com.wenhao.pss.service.IDepartmentService;
 import com.wenhao.pss.service.IEmployeeService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.ServletActionContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.List;
 
 /**
@@ -22,6 +29,7 @@ public class EmployeeAction extends CRUDAction {
     private PageResult<Employee> pageResult;
     private Employee employee;
     private EmployeeQuery baseQuery = new EmployeeQuery();
+    private String name;
 
 
     public void setEmployeeService(IEmployeeService employeeService) {
@@ -86,6 +94,23 @@ public class EmployeeAction extends CRUDAction {
         return RELOAD;
     }
 
+    public String check() throws Exception {
+        //fasle  就是不存在
+        HttpServletResponse response = ServletActionContext.getResponse();
+        PrintWriter writer = response.getWriter();
+        if (id != null) {
+            employee = employeeService.get(id);
+            if (!employee.getName().equals(name)) {
+                writer.print(employeeService.findByName(name));
+            } else {
+                writer.print(true);
+            }
+        } else {
+            writer.print(employeeService.findByName(name));
+        }
+        return NONE;
+    }
+
     public PageResult<Employee> getPageResult() {
         return pageResult;
     }
@@ -116,5 +141,13 @@ public class EmployeeAction extends CRUDAction {
             this.employee = employeeService.get(id);
             employee.setDepartment_id(null);
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

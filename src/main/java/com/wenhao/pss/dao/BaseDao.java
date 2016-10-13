@@ -76,4 +76,9 @@ public class BaseDao<T> extends HibernateDaoSupport {
         }
     }
 
+    public List findByName(String hql, Object... objects) {
+        List list = this.getHibernateTemplate().find(hql, objects);
+        return list;
+    }
+
 }
