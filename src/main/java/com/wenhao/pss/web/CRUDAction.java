@@ -34,7 +34,7 @@ public abstract class CRUDAction extends BaseAction implements ModelDriven, Prep
 
     public abstract String save();
 
-    public abstract String delete();
+    public abstract String delete() throws Exception;
 
     public void prepare() throws Exception {
 

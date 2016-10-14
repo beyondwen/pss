@@ -40,6 +40,10 @@
             <result name="reload" type="redirectAction">
                <param name="actionName">{1}</param>
                 <param name="baseQuery.currentPage">${baseQuery.currentPage}</param>
+                <param name="baseQuery.pageSize">${baseQuery.pageSize}</param>
+                <param name="baseQuery.name">${baseQuery.name}</param>
+                <param name="baseQuery.email">${baseQuery.email}</param>
+                <param name="baseQuery.deptId">${baseQuery.deptId}</param>
             </result>
         </action>
     </package>

@@ -17,6 +17,11 @@
 <%@include file="message.jsp" %>
 <s:form id="employeeForm" action="employee_save">
     <s:hidden id="id" name="id"/>
+    <s:hidden name="baseQuery.currentPage"/>
+    <s:hidden name="baseQuery.pageSize"/>
+    <s:hidden name="baseQuery.name"/>
+    <s:hidden name="baseQuery.email"/>
+    <s:hidden name="baseQuery.deptId"/>
     <div class="content-right">
         <div class="content-r-pic">
             <div style="margin:5px auto auto 12px;"><img src="images/canping.gif" width="138" height="17"/></div>

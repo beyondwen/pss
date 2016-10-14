@@ -86,13 +86,31 @@ public class EmployeeAction extends CRUDAction {
     }
 
     //删除
-    @Override
+   /* @Override
     public String delete() {
         if (id != null) {
             employeeService.delete(id);
             addActionMessage("删除成功");
         }
         return RELOAD;
+    }*/
+
+    @Override
+    public String delete() throws Exception {
+        HttpServletResponse response = ServletActionContext.getResponse();
+        response.setContentType("text/json; charset=utf-8");
+        PrintWriter printWriter = ServletActionContext.getResponse().getWriter();
+        try {
+            if (id != null) {
+                employeeService.delete(id);
+                printWriter.write("{\"success\":true,\"msg\":\"删除成功\"}");
+            } else {
+                printWriter.write("{\"success\":false,\"msg\":\"id不存在\"}");
+            }
+        } catch (Exception e) {
+            printWriter.write("{\"success\":false,\"msg\":\"异常:" + e.getMessage() + "\"}");
+        }
+        return NONE;
     }
 
     public String check() throws Exception {

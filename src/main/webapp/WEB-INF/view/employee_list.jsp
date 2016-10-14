@@ -3,7 +3,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
     <link href="css/index.css" rel="stylesheet" type="text/css"/>
     <script src="/js/validate/jquery.js" type="text/javascript"></script>
     <script src="/js/commons.js" type="text/javascript"></script>
@@ -63,9 +62,12 @@
                             <td>${department_id.name}</td>
                             <td><img src="images/icon_3.gif"/>
                                 <span style="line-height:12px; text-align:center;">
-	       <a class="xiu" href="employee_input.action?id=${id}">修改</a>
-	       </span> <img src="/images/icon_04.gif"/> <span style="line-height:12px; text-align:center;">
-	       <a class="xiu" href="employee_delete.action?id=${id}">删除</a></span></td>
+	                            <a class="xiu" href="#" onclick="updateDomain('employee_input.action?id=${id}');">修改</a>
+	                            </span>
+                                <img src="/images/icon_04.gif"/> <span style="line-height:12px; text-align:center;">
+	                            <a class="xiu" href="#" onclick="deleteDomain('employee_delete.action','${id}');">删除</a>
+                                </span>
+                            </td>
                         </tr>
                     </s:iterator>
                 </table>
@@ -76,3 +78,22 @@
     </body>
     </html>
 </s:form>
+<script type="text/javascript">
+    function updateDomain(url) {
+        $("#domainForm").attr("action", url);
+        $("#domainForm").submit();
+    }
+    ;
+
+    function deleteDomain(url, did) {
+        $.post(url, {id: did},
+                function (data) {
+                    if (data.success) {
+                        $("#domainForm").submit();
+                        //alert(data.msg);
+                    } else {
+                        alert(data.msg);
+                    }
+                })
+    }
+</script>
