@@ -37,7 +37,10 @@
             <result>/WEB-INF/view/{1}_list.jsp</result>
             <result name="input">/WEB-INF/view/{1}_input.jsp</result>
             <result name="{2}">/WEB-INF/view/{1}_{2}.jsp</result>
-            <result name="reload" type="redirectAction">{1}</result>
+            <result name="reload" type="redirectAction">
+               <param name="actionName">{1}</param>
+                <param name="baseQuery.currentPage">${baseQuery.currentPage}</param>
+            </result>
         </action>
     </package>
 </struts>

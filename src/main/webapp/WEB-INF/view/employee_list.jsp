@@ -38,7 +38,7 @@
                         <s:select list="#allDepts" name="baseQuery.deptId" listKey="id" listValue="name"
                                   headerKey="-1" headerValue="--请选择--"/>
                     </td>
-                    <td width="85"><input type="image" src="/images/can_b_01.gif"/></td>
+                    <td width="85"><img onclick="go(1)" src="/images/can_b_01.gif"/></td>
                     <td width="136"><a href="employee_input.action"><img src="/images/can_b_02.gif" border="0"/></a>
                     </td>
                 </tr>

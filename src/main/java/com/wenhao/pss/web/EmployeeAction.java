@@ -72,6 +72,7 @@ public class EmployeeAction extends CRUDAction {
         try {
             if (id == null) {
                 employeeService.save(employee);
+                baseQuery.setCurrentPage(Integer.MAX_VALUE);
                 addActionMessage("保存成功");
             } else {
                 employeeService.update(employee);
