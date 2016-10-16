@@ -44,7 +44,7 @@
                 </table>
             </div><!--"square-o-top"end-->
             <div class="square-order">
-                <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                <table id="tablelist" width="100%" border="1" cellpadding="0" cellspacing="0">
                     <tr align="center" style="background:url(/images/table_bg.gif) repeat-x;">
                         <td width="13%" height="30">编号</td>
                         <td width="16%">用户名</td>
@@ -65,7 +65,7 @@
 	                            <a class="xiu" href="#" onclick="updateDomain('employee_input.action?id=${id}');">修改</a>
 	                            </span>
                                 <img src="/images/icon_04.gif"/> <span style="line-height:12px; text-align:center;">
-	                            <a class="xiu" href="#" onclick="deleteDomain('employee_delete.action','${id}');">删除</a>
+	                            <a class="xiu" href="#" onclick="deleteDomain('employee_delete.action','${id}',this);">删除</a>
                                 </span>
                             </td>
                         </tr>
@@ -82,15 +82,22 @@
     function updateDomain(url) {
         $("#domainForm").attr("action", url);
         $("#domainForm").submit();
-    }
-    ;
+    };
 
-    function deleteDomain(url, did) {
+    function deleteDomain(url, did, src) {
         $.post(url, {id: did},
                 function (data) {
                     if (data.success) {
-                        $("#domainForm").submit();
+                        //$("#domainForm").submit();
                         //alert(data.msg);
+                        //================
+                        //console.debug($("#tablelist tr").size());
+                        if ($("#tablelist tr").size() == 2) {
+                            $("#domainForm").submit();
+                        } else {
+                            $(src).closest("tr").remove();
+                        }
+                        $("#totalCount").html($("#totalCount").html() - 1);
                     } else {
                         alert(data.msg);
                     }

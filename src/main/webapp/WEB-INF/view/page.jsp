@@ -7,7 +7,7 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td></td>
-            <td>共${pageResult.totalCount}条记录</td>
+            <td><span id="totalCount">共${pageResult.totalCount}条记录</span></td>
             <td>当前第<span style="color:red;">${pageResult.currentPage}</span>/${pageResult.totalPage}
             </td>
             <td>每页${pageResult.pageSize}条记录</td>

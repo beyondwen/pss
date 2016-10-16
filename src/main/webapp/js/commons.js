@@ -8,16 +8,25 @@ function updateDomain(url) {
     $("#domainForm").attr("action", url);
     $("#domainForm").submit();
 };
-function deleteDomain(url, did) {
+
+function deleteDomain(url, did, src) {
     $.post(url, {id: did},
         function (data) {
             if (data.success) {
-                $("#domainForm").submit();
+                //$("#domainForm").submit();
                 //alert(data.msg);
+                //================
+                //console.debug($("#tablelist tr").size());
+                if ($("#tablelist tr").size() == 2) {
+                    $("#domainForm").submit();
+                } else {
+                    $(src).closest("tr").remove();
+                }
+                $("#totalCount").html($("#totalCount").html() - 1);
             } else {
                 alert(data.msg);
             }
-        });
+        })
 }
 $().ready(function () {
     //1.输入查询页面的时候,只要用户输入非数字,就把非数字退掉
