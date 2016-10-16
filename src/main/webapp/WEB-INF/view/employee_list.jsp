@@ -5,7 +5,7 @@
 <head>
     <link href="css/index.css" rel="stylesheet" type="text/css"/>
     <script src="/js/validate/jquery.js" type="text/javascript"></script>
-    <script src="/js/commons.js" type="text/javascript"></script>
+    <script src="js/commons.js" type="text/javascript"></script>
     <title>成都蓝源进销存系统(教学版)-员工列表页</title>
 </head>
 <body>
@@ -79,7 +79,7 @@
     </html>
 </s:form>
 <script type="text/javascript">
-    function updateDomain(url) {
+    /*function updateDomain(url) {
         $("#domainForm").attr("action", url);
         $("#domainForm").submit();
     };
@@ -102,5 +102,5 @@
                         alert(data.msg);
                     }
                 })
-    }
+    }*/
 </script>
