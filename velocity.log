@@ -1,0 +1,4 @@
+2016-10-17 23:51:56,878 - ResourceManager : unable to find resource 'velocity.jsp' in any resource loader.
+2016-10-17 23:52:21,779 - ResourceManager : unable to find resource 'velocity.jsp' in any resource loader.
+2016-10-17 23:52:35,578 - ResourceManager : unable to find resource '/velocity.jsp' in any resource loader.
+2016-10-17 23:52:58,533 - ResourceManager : unable to find resource 'temp/Service.java' in any resource loader.

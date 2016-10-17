@@ -1,6 +1,9 @@
 package com.wenhao.pss.CreatCode;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.Velocity;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,11 +32,14 @@ public class CreateCode {
     };
 
     @Test
-    public void create() {
+    public void create() throws Exception {
+        VelocityContext context = new VelocityContext();
         //5.外循环：domains
         for (int i = 0; i < domains.length; i++) {
+            context.put("domain", domains[i]);
             //6.处理domain首字母小写
             String lowerDomain = StringUtils.uncapitalize(domains[i]);
+            context.put("lowerDomain", lowerDomain);
             //7.内循环：templates和files
             for (int j = 0; j < templates.length; j++) {
                 File file = new File(filePath[j] + domains[i] + templates[j]);
@@ -49,6 +55,10 @@ public class CreateCode {
                     file = new File(filePath[j] + lowerDomain + "/" + lowerDomain + ".js");
                 }
                 System.out.println(file.getAbsolutePath());
+                Template template = Velocity.getTemplate("temp/" + templates[j], "UTF-8");
+                System.out.println(template.getName());
+                //template.merge(context,);
+
             }
 //8.实例化文件存放的路径
 //9.处理特殊的文件名称
