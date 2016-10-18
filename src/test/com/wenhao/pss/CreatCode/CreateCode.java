@@ -14,6 +14,9 @@ import java.io.FileWriter;
  * Created by lenovo on 2016/10/17.
  */
 public class CreateCode {
+    //12.开关：默认情况下已经存在的文件不需要生成代码 true:覆盖所有代码
+    private boolean createCode = false;
+
     //1.那些domain需要生成代码
     private String[] domains = {"Dept"};
     private String[] domainName = {"部门"};
@@ -59,6 +62,10 @@ public class CreateCode {
                 } else if ("domain.js".equals(templates[j])) {
                     file = new File(filePath[j] + lowerDomain + "/" + lowerDomain + ".js");
                 }
+
+                if (file.exists() && !createCode) {
+                    continue;
+                }
                 System.out.println(file.getAbsolutePath());
                 Template template = Velocity.getTemplate("temp/" + templates[j], "UTF-8");
                 //10.判断父目录是否存在
@@ -74,7 +81,6 @@ public class CreateCode {
                 //template.merge(context,);
 
             }
-//12.开关：默认情况下已经存在的文件不需要生成代码 true:覆盖所有代码
         }
     }
 }
