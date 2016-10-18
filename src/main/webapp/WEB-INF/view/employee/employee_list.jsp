@@ -15,7 +15,7 @@
             <div style="margin:8px auto auto 12px;"><img src="images/ping.gif" width="138" height="17"/></div>
         </div>
         <div class="content-text">
-            <%@include file="message.jsp" %>
+            <%@include file="../message.jsp" %>
             <div class="square-o-top">
                 <table width="100%" border="0" cellpadding="0" cellspacing="0"
                        style="font-size:14px; font-weight:bold; font-family:" 黑体
@@ -73,7 +73,7 @@
                 </table>
             </div><!--"square-order"end-->
         </div><!--"content-text"end-->
-        <%@include file="page.jsp" %>
+        <%@include file="../page.jsp" %>
     </div>
     </body>
     </html>

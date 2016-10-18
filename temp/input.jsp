@@ -9,19 +9,16 @@
     <script src="/js/validate/jquery.js" type="text/javascript"></script>
     <script src="/js/validate/jquery.validate.js" type="text/javascript"></script>
     <script src="/js/validate/messages_cn.js" type="text/javascript"></script>
-    <script src="/js/employee.js" type="text/javascript"></script>
+    <script src="/js/model/${lowerDomain}/${lowerDomain}.js" type="text/javascript"></script>
 
-    <title>成都蓝源进销存系统(教学版)-员工编辑界面</title>
+    <title>成都蓝源进销存系统(教学版)-${domainName}编辑界面</title>
 </head>
 <body>
-<%@include file="message.jsp" %>
-<s:form id="employeeForm" action="employee_save">
+<%@include file="../message.jsp" %>
+<s:form id="${lowerDomain}Form" action="${lowerDomain}_save">
     <s:hidden id="id" name="id"/>
     <s:hidden name="baseQuery.currentPage"/>
     <s:hidden name="baseQuery.pageSize"/>
-    <s:hidden name="baseQuery.name"/>
-    <s:hidden name="baseQuery.email"/>
-    <s:hidden name="baseQuery.deptId"/>
     <div class="content-right">
         <div class="content-r-pic">
             <div style="margin:5px auto auto 12px;"><img src="images/canping.gif" width="138" height="17"/></div>
@@ -36,40 +33,15 @@
                     </table>
                     <table width="100%" border="0" cellpadding="0" cellspacing="0">
                         <tr bgcolor="#FFFFFF">
-                            <td width="13%" height="30" align="center">用户名</td>
+                            <td width="13%" height="30" align="center">${domainName}</td>
                             <td width="36%">
                                 <s:textfield name="name" size="25"/>
                             </td>
                         </tr>
-                        <s:if test="id==null">
-                            <tr bgcolor="#FFFFFF">
-                                <td height="30" align="center">密码</td>
-                                <td>
-                                    <s:password id="password" name="password" size="25"/>
-                                </td>
-                            </tr>
-                            <tr bgcolor="#FFFFFF">
-                                <td height="30" align="center">确认密码</td>
-                                <td>
-                                    <input type="password" name="confirmpassword" size="25"/>
-                                </td>
-                            </tr>
-                        </s:if>
-                        <tr bgcolor="#FFFFFF">
-                            <td height="30" align="center">年龄</td>
-                            <td><s:textfield name="age" size="25"/></td>
-                        </tr>
-                        <tr bgcolor="#FFFFFF">
-                            <td height="30" align="center">Email</td>
-                            <td><s:textfield name="email" size="25"/></td>
-                        </tr>
-                        <tr bgcolor="#FFFFFF">
-                            <td height="30" align="center">部门</td>
-                            <td>
-                                <s:select list="#allDepts" name="department_id.id" listKey="id" listValue="name"
-                                          headerKey="-1" headerValue="--请选择--"/>
-                            </td>
-                        </tr>
+
+
+                                <%--<s:select list="#allDepts" name="department_id.id" listKey="id" listValue="name"
+                                          headerKey="-1" headerValue="--请选择--"/>--%>
                     </table>
                 </div>
                 <div class="order-botton">

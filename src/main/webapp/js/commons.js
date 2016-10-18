@@ -13,10 +13,6 @@ function deleteDomain(url, did, src) {
     $.post(url, {id: did},
         function (data) {
             if (data.success) {
-                //$("#domainForm").submit();
-                //alert(data.msg);
-                //================
-                //console.debug($("#tablelist tr").size());
                 if ($("#tablelist tr").size() == 2) {
                     $("#domainForm").submit();
                 } else {

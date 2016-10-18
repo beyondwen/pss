@@ -14,7 +14,7 @@
     <title>成都蓝源进销存系统(教学版)-员工编辑界面</title>
 </head>
 <body>
-<%@include file="message.jsp" %>
+<%@include file="../message.jsp" %>
 <s:form id="employeeForm" action="employee_save">
     <s:hidden id="id" name="id"/>
     <s:hidden name="baseQuery.currentPage"/>
@@ -78,9 +78,9 @@
                             <tr>
                                 <td><input type="image" src="/images/order_tuo.gif" border="0"/></td>
                                 <td>&nbsp;</td>
-                                <td><img id="resetBtn"  src="/images/order_tuo.gif" border="0"/></td>
+                                <td><img id="resetBtn" src="/images/order_tuo.gif" border="0"/></td>
                                 <td>&nbsp;</td>
-                                <td><img id="cancelBtn"  src="/images/order_tuo.gif" border="0"/></td>
+                                <td><img id="cancelBtn" src="/images/order_tuo.gif" border="0"/></td>
                             </tr>
                         </table>
                     </div>

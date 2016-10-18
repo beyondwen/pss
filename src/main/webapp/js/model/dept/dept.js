@@ -1,35 +1,14 @@
 $().ready(function () {
-    $("#employeeForm").validate({
+    $("#deptForm").validate({
         rules: {
             name: {
                 required: true,
-                minlength: 2,
-                remote:"employee_check.action?id="+$("#id").val()
-            },
-            password: {
-                required: true,
-                minlength: 5
-            },
-            confirmpassword: {
-                required: true,
                 minlength: 5,
-                equalTo: "#password"
-            },
-            age:{
-                required: true,
-                range:[18,50]
-            },
-            email: {
-                required: true,
-                email: true
             }
         },
         messages:{
-            confirmpassword: {
-                equalTo: "两次密码要一致"
-            },
             name: {
-                remote: "该用户名已存在"
+                required: "用户名必填"
             }
         }
 

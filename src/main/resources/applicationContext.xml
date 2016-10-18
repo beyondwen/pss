@@ -30,7 +30,7 @@
                 <prop key="hibernate.format_sql">${hibernate.formatsql}</prop>
             </props>
         </property>
-        <property name="mappingLocations" value="classpath:/domain/*.hbm.xml"/>
+        <property name="mappingLocations" value="classpath:/com/wenhao/pss/domain/*.hbm.xml"/>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">

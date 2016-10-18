@@ -9,9 +9,9 @@
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
-    <bean id="departmentService" class="com.wenhao.pss.service.impl.DepartmentServiceImpl" parent="baseService"/>
+    <bean id="${lowerDomain}Service" class="com.wenhao.pss.service.impl.${domain}ServiceImpl" parent="baseService"/>
 
-    <bean id="departmentAction" class="com.wenhao.pss.web.DepartmentAction" scope="prototype">
-        <property name="departmentService" ref="departmentService"/>
+    <bean id="${lowerDomain}Action" class="com.wenhao.pss.web.${domain}Action" scope="prototype">
+        <property name="${lowerDomain}Service" ref="${lowerDomain}Service"/>
     </bean>
 </beans>

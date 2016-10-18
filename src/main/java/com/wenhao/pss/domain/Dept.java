@@ -1,10 +1,9 @@
 package com.wenhao.pss.domain;
 
 /**
- * Created by lenovo on 2016/10/10.
+ * Created by lenovo on 2016/10/18.
  */
-public class Department extends EnityId {
-
+public class Dept extends EnityId{
     private String name;
 
     public String getName() {

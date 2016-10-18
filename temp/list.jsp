@@ -6,16 +6,16 @@
     <link href="css/index.css" rel="stylesheet" type="text/css"/>
     <script src="/js/validate/jquery.js" type="text/javascript"></script>
     <script src="js/commons.js" type="text/javascript"></script>
-    <title>成都蓝源进销存系统(教学版)-员工列表页</title>
+    <title>成都蓝源进销存系统(教学版)-${domainName}列表页</title>
 </head>
 <body>
-<s:form id="domainForm" action="employee">
+<s:form id="domainForm" action="${lowerDomain}">
     <div class="content-right">
         <div class="content-r-pic">
             <div style="margin:8px auto auto 12px;"><img src="images/ping.gif" width="138" height="17"/></div>
         </div>
         <div class="content-text">
-            <%@include file="message.jsp" %>
+            <%@include file="../message.jsp" %>
             <div class="square-o-top">
                 <table width="100%" border="0" cellpadding="0" cellspacing="0"
                        style="font-size:14px; font-weight:bold; font-family:" 黑体
@@ -28,17 +28,11 @@
                     <td width="133">
                         <s:textfield name="baseQuery.name"/>
                     </td>
-                    <td width="49">邮箱:</td>
-                    <td width="142">
-                        <s:textfield name="baseQuery.email"/>
-                    </td>
-                    <td width="52">部门:</td>
-                    <td width="149">
-                        <s:select list="#allDepts" name="baseQuery.deptId" listKey="id" listValue="name"
-                                  headerKey="-1" headerValue="--请选择--"/>
-                    </td>
+
+                       <%-- <s:select list="#allDepts" name="baseQuery.deptId" listKey="id" listValue="name"
+                                  headerKey="-1" headerValue="--请选择--"/>--%>
                     <td width="85"><img onclick="go(1)" src="/images/can_b_01.gif"/></td>
-                    <td width="136"><a href="employee_input.action"><img src="/images/can_b_02.gif" border="0"/></a>
+                    <td width="136"><a href="${lowerDomain}_input.action"><img src="/images/can_b_02.gif" border="0"/></a>
                     </td>
                 </tr>
                 </table>
@@ -48,24 +42,18 @@
                     <tr align="center" style="background:url(/images/table_bg.gif) repeat-x;">
                         <td width="13%" height="30">编号</td>
                         <td width="16%">用户名</td>
-                        <td width="15%">年龄</td>
-                        <td width="14%">邮箱</td>
-                        <td width="14%">部门部门</td>
                         <td width="16%">操作</td>
                     </tr>
                     <s:iterator value="pageResult.row">
                         <tr align="center" bgcolor="#FFFFFF">
                             <td height="28">${id}</td>
                             <td>${name}</td>
-                            <td>${age}</td>
-                            <td>${email}</td>
-                            <td>${department_id.name}</td>
                             <td><img src="images/icon_3.gif"/>
                                 <span style="line-height:12px; text-align:center;">
-	                            <a class="xiu" href="#" onclick="updateDomain('employee_input.action?id=${id}');">修改</a>
+	                            <a class="xiu" href="#" onclick="updateDomain('${lowerDomain}_input.action?id=${id}');">修改</a>
 	                            </span>
                                 <img src="/images/icon_04.gif"/> <span style="line-height:12px; text-align:center;">
-	                            <a class="xiu" href="#" onclick="deleteDomain('employee_delete.action','${id}',this);">删除</a>
+	                            <a class="xiu" href="#" onclick="deleteDomain('${lowerDomain}_delete.action','${id}',this);">删除</a>
                                 </span>
                             </td>
                         </tr>
@@ -73,34 +61,8 @@
                 </table>
             </div><!--"square-order"end-->
         </div><!--"content-text"end-->
-        <%@include file="page.jsp" %>
+        <%@include file="../page.jsp" %>
     </div>
     </body>
     </html>
 </s:form>
-<script type="text/javascript">
-    /*function updateDomain(url) {
-        $("#domainForm").attr("action", url);
-        $("#domainForm").submit();
-    };
-
-    function deleteDomain(url, did, src) {
-        $.post(url, {id: did},
-                function (data) {
-                    if (data.success) {
-                        //$("#domainForm").submit();
-                        //alert(data.msg);
-                        //================
-                        //console.debug($("#tablelist tr").size());
-                        if ($("#tablelist tr").size() == 2) {
-                            $("#domainForm").submit();
-                        } else {
-                            $(src).closest("tr").remove();
-                        }
-                        $("#totalCount").html($("#totalCount").html() - 1);
-                    } else {
-                        alert(data.msg);
-                    }
-                })
-    }*/
-</script>

@@ -1,17 +1,16 @@
 package com.wenhao.pss.page;
 
-import com.wenhao.pss.domain.Department;
-import com.wenhao.pss.domain.Employee;
+import com.wenhao.pss.domain.${domain};
 import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by lenovo on 2016/10/07.
  */
-public class DepartmentQuery extends BaseQuery {
+public class ${domain}Query extends BaseQuery {
     private String name;
 
-    public DepartmentQuery() {
-        super(Department.class);
+    public ${domain}Query() {
+        super(${domain}.class);
     }
 
     protected void addWhere() {
