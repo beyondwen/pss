@@ -12,6 +12,7 @@ import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -130,6 +131,9 @@ public class RoleAction extends CRUDAction {
             role = new Role();
         } else {
             this.role = roleService.get(id);
+            //role.setResources(null);用于修改角色所拥有的资源，这样会报空指针异常
+            //role.setResources(new HashSet<Resource>());这个不会报错，但是性能不好
+            role.getResources().clear();
         }
     }
 
