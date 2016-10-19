@@ -12,5 +12,9 @@
 		<property name="email"/>
 		<property name="age"/>
 		<many-to-one name="department_id" class="Department"/>
+		<set name="roles" table="employee_role">
+			<key column="employee_id"/>
+			<many-to-many class="Role" column="role_id"/>
+		</set>
 	</class>
 </hibernate-mapping>

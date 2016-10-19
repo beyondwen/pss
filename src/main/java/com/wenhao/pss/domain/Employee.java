@@ -1,5 +1,8 @@
 package com.wenhao.pss.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by lenovo on 2016/10/06.
  */
@@ -9,6 +12,7 @@ public class Employee extends EnityId {
     private String email;
     private Integer age;
     private Department department_id;
+    private Set<Role> roles = new HashSet<Role>();
 
     public String getName() {
         return name;
@@ -48,6 +52,14 @@ public class Employee extends EnityId {
 
     public void setDepartment_id(Department department_id) {
         this.department_id = department_id;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
