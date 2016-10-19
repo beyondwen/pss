@@ -12,6 +12,7 @@ import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.util.Set;
 
 /**
  * Created by lenovo on 2016/10/07.
@@ -115,6 +116,12 @@ public class RoleAction extends CRUDAction {
     public void beforeInput() {
         if (id != null) {
             this.role = roleService.get(id);
+            Set<Resource> resources = role.getResources();//获得中间表
+            ids = new Long[resources.size()];
+            int index = 0;
+            for (Resource resource : resources) {
+                ids[index++] = resource.getId();
+            }
         }
     }
 
