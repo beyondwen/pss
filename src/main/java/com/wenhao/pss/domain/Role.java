@@ -12,6 +12,15 @@ public class Role extends EnityId {
 
     private Set<Resource> resources = new HashSet<Resource>();
 
+    public Role() {
+    }
+
+    public Role(Long id) {
+        this.id = id;
+    }
+
+
+
     public String getName() {
         return name;
     }

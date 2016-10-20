@@ -70,6 +70,12 @@
                                           headerKey="-1" headerValue="--请选择--"/>
                             </td>
                         </tr>
+                        <tr bgcolor="#FFFFFF">
+                            <td height="30" align="center">角色</td>
+                            <td>
+                                <s:checkboxlist list="#allRoles" name="ids" listKey="id" listValue="name"/>
+                            </td>
+                        </tr>
                     </table>
                 </div>
                 <div class="order-botton">

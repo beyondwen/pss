@@ -14,5 +14,6 @@
     <bean id="employeeAction" class="com.wenhao.pss.web.EmployeeAction" scope="prototype">
         <property name="employeeService" ref="employeeService"/>
         <property name="departmentService" ref="departmentService"/>
+        <property name="roleService" ref="roleService"/>
     </bean>
 </beans>

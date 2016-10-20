@@ -12,7 +12,6 @@ import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
-import java.util.HashSet;
 import java.util.Set;
 
 /**

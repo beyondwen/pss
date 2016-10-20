@@ -6,10 +6,12 @@ import com.opensymphony.xwork2.Preparable;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 import com.wenhao.pss.domain.Department;
 import com.wenhao.pss.domain.Employee;
+import com.wenhao.pss.domain.Role;
 import com.wenhao.pss.page.EmployeeQuery;
 import com.wenhao.pss.page.PageResult;
 import com.wenhao.pss.service.IDepartmentService;
 import com.wenhao.pss.service.IEmployeeService;
+import com.wenhao.pss.service.IRoleService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.slf4j.Logger;
@@ -19,18 +21,20 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by lenovo on 2016/10/07.
  */
 public class EmployeeAction extends CRUDAction {
     private IEmployeeService employeeService;
+    private IRoleService roleService;
     private IDepartmentService departmentService;
     private PageResult<Employee> pageResult;
     private Employee employee;
     private EmployeeQuery baseQuery = new EmployeeQuery();
     private String name;
-
+    private Long[] ids;
 
     public void setEmployeeService(IEmployeeService employeeService) {
         this.employeeService = employeeService;
@@ -38,6 +42,10 @@ public class EmployeeAction extends CRUDAction {
 
     public void setDepartmentService(IDepartmentService departmentService) {
         this.departmentService = departmentService;
+    }
+
+    public void setRoleService(IRoleService roleService) {
+        this.roleService = roleService;
     }
 
     //列表
@@ -52,6 +60,7 @@ public class EmployeeAction extends CRUDAction {
     @Override
     public String input() {
         putContext("allDepts", departmentService.getAll());
+        putContext("allRoles", roleService.getAll());
         return INPUT;
     }
 
@@ -68,6 +77,9 @@ public class EmployeeAction extends CRUDAction {
         Department department = employee.getDepartment_id();
         if (department != null && department.getId() != null && department.getId() == -1L) {
             employee.setDepartment_id(null);
+        }
+        for (Long id : ids) {
+            employee.getRoles().add(new Role(id));
         }
         try {
             if (id == null) {
@@ -140,6 +152,13 @@ public class EmployeeAction extends CRUDAction {
     public void beforeInput() {
         if (id != null) {
             this.employee = employeeService.get(id);
+            Set<Role> roles = employee.getRoles();
+            ids = new Long[roles.size()];
+            int index = 0;
+            for (Role role : roles) {
+                ids[index++] = role.getId();
+            }
+
         }
     }
 
@@ -149,6 +168,7 @@ public class EmployeeAction extends CRUDAction {
         } else {
             this.employee = employeeService.get(id);
             employee.setDepartment_id(null);
+            employee.getRoles().clear();
         }
     }
 
@@ -158,5 +178,13 @@ public class EmployeeAction extends CRUDAction {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long[] getIds() {
+        return ids;
+    }
+
+    public void setIds(Long[] ids) {
+        this.ids = ids;
     }
 }
