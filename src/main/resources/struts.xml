@@ -4,7 +4,6 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-
     <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
     <constant name="struts.devMode" value="true"/>
     <!--主题样式-->
@@ -22,6 +21,10 @@
 
         <default-interceptor-ref name="pssStack"/>
 
+        <global-results>
+            <result name="login">/WEB-INF/view/login.jsp</result>
+            <result name="main" type="redirectAction">main</result>
+        </global-results>
         <!--主页面-->
         <action name="main">
             <result>/WEB-INF/view/main.jsp</result>
@@ -31,6 +34,8 @@
         <action name="right">
             <result>/WEB-INF/view/right.jsp</result>
         </action>
+
+        <action name="login_*" class="loginAction" method="{1}"/>
 
         <!--employeeAction-->
         <action name="*_*" class="{1}Action" method="{2}">

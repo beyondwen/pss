@@ -8,4 +8,6 @@ import com.wenhao.pss.domain.Employee;
 public interface IEmployeeService extends IBaseService<Employee> {
 
     boolean findByName(String name);
+
+    Employee findByLogin(String name, String password);
 }

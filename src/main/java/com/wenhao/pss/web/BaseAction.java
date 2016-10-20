@@ -13,6 +13,7 @@ public abstract class BaseAction extends ActionSupport {
     protected Logger logger = org.slf4j.LoggerFactory.getLogger(getClass());
 
     public static final String RELOAD = "reload";
+    public static final String USER_IN_SESSION = "userinsession";
 
     protected void putContext(String key, Object o) {
         ActionContext.getContext().put(key, o);

@@ -16,4 +16,8 @@
     <bean id="baseService" abstract="true" class="com.wenhao.pss.service.impl.BaseServiceImpl">
         <property name="baseDao" ref="baseDao"/>
     </bean>
+
+    <bean id="loginAction" class="com.wenhao.pss.web.LoginAction" scope="prototype">
+        <property name="employeeService" ref="employeeService"/>
+    </bean>
 </beans>

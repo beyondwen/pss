@@ -20,4 +20,13 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee> implements IE
         }
         return false;
     }
+
+    public Employee findByLogin(String name, String password) {
+        String hql = "select o from Employee o where o.name=? and o.password=?";
+        List<Employee> employees = baseDao.findByName(hql, name, password);
+        if (employees.size() == 1) {
+            return employees.get(0);
+        }
+        return null;
+    }
 }
