@@ -29,4 +29,14 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee> implements IE
         }
         return null;
     }
+
+    public List<String> findResourceMethod() {
+        String hql = "select o.method from Resource o";
+        return baseDao.findByName(hql);
+    }
+
+    public List<String> findResourceByLogin(Employee loginUser) {
+        String hql = "select distinct e.method from Employee o join o.roles r join r.resources e where o=?";
+        return baseDao.findByName(hql, loginUser);
+    }
 }
