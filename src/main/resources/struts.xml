@@ -11,16 +11,16 @@
     <constant name="struts.action.extension" value="action,,"/>
     <package name="default" namespace="/" extends="struts-default">
         <interceptors>
+            <interceptor name="authInterceptor" class="com.wenhao.pss.web.interceptor.AuthInterceptor"/>
             <interceptor-stack name="pssStack">
+                <interceptor-ref name="authInterceptor"/>
                 <interceptor-ref name="paramsPrepareParamsStack"/>
                 <interceptor-ref name="store">
                     <param name="operationMode">AUTOMATIC</param>
                 </interceptor-ref>
             </interceptor-stack>
         </interceptors>
-
         <default-interceptor-ref name="pssStack"/>
-
         <global-results>
             <result name="login">/WEB-INF/view/login.jsp</result>
             <result name="main" type="redirectAction">main</result>
