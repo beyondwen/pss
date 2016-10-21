@@ -9,9 +9,12 @@
     <!--主题样式-->
     <constant name="struts.ui.theme" value="simple"/>
     <constant name="struts.action.extension" value="action,,"/>
+
     <package name="default" namespace="/" extends="struts-default">
         <interceptors>
-            <interceptor name="authInterceptor" class="com.wenhao.pss.web.interceptor.AuthInterceptor"/>
+            <interceptor name="authInterceptor" class="com.wenhao.pss.web.interceptor.AuthInterceptor">
+                <param name="actions">LoginAction,LogoutAction</param>
+            </interceptor>
             <interceptor-stack name="pssStack">
                 <interceptor-ref name="authInterceptor"/>
                 <interceptor-ref name="paramsPrepareParamsStack"/>

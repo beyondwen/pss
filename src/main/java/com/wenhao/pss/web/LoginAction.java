@@ -6,20 +6,21 @@ import com.wenhao.pss.service.IEmployeeService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by lenovo on 2016/10/20.
  */
 public class LoginAction extends BaseAction {
-
+    private IEmployeeService employeeService;
     private String name;
     private String password;
-
-    private IEmployeeService employeeService;
 
     public void setEmployeeService(IEmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
+    // 显示登录页面
     @Override
     public String execute() throws Exception {
         return LOGIN;
@@ -31,19 +32,17 @@ public class LoginAction extends BaseAction {
         }
     }
 
+    // 处理登录请求
     @InputConfig(resultName = "login")
-    public String check() {
-        if (StringUtils.isBlank(name)) {
-            addFieldError("name", "用户名必须填写");
-        }
+    public String check() throws Exception {
         Employee employee = employeeService.findByLogin(name, password);
-        if (employee != null) {
-            ServletActionContext.getRequest().getSession().setAttribute("USER_IN_SESSION", employee);
-            return "main";
-        } else {
-            addActionError("用户名或密码错误");
+        if (employee != null) {// 登录成功
+            HttpSession session = ServletActionContext.getRequest()
+                    .getSession();
+            session.setAttribute(USER_IN_SESSION, employee);
+            return "main";// 重定向
         }
-
+        addActionError("登录失败");
         return LOGIN;
     }
 
