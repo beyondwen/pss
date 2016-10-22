@@ -16,7 +16,7 @@
             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                     <td width="32%"><a href="#"><img src="images/head-l.gif" border="0"></a></td>
-                    <td width="26%"><a href="#"><img src="images/head-m.gif" border="0"></a></td>
+                    <td width="26%"><a href="logout.action"><img src="images/head-m.gif" border="0"></a></td>
                     <td width="7%">&nbsp;</td>
                     <td width="35%"><a href="#"><img src="images/head-r.gif" border="0"></a></td>
                 </tr>

@@ -20,4 +20,6 @@
     <bean id="loginAction" class="com.wenhao.pss.web.LoginAction" scope="prototype">
         <property name="employeeService" ref="employeeService"/>
     </bean>
+
+    <bean id="logoutAction" class="com.wenhao.pss.web.LogoutAction" scope="prototype"/>
 </beans>
