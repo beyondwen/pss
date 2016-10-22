@@ -10,17 +10,21 @@ function updateDomain(url) {
 };
 
 function deleteDomain(url, did, src) {
-    $.post(url, {id: did},
-        function (data) {
-            if (data.success) {
-                if ($("#tablelist tr").size() == 2) {
-                    $("#domainForm").submit();
+    $.post(url, {id: did},function (data) {
+            //判断data是否是一个object对象
+            if (data instanceof Object) {
+                if (data.success) {
+                    if ($("#tablelist tr").size() == 2) {
+                        $("#domainForm").submit();
+                    } else {
+                        $(src).closest("tr").remove();
+                    }
+                    $("#totalCount").html($("#totalCount").html() - 1);
                 } else {
-                    $(src).closest("tr").remove();
+                    alert(data.msg);
                 }
-                $("#totalCount").html($("#totalCount").html() - 1);
             } else {
-                alert(data.msg);
+                alert("你没有权限删除");
             }
         })
 }

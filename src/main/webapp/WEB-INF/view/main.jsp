@@ -10,8 +10,8 @@
 <body>
 <div class="container">
     <div class="head">
-        <div class="head-left"><span style="font-weight:bold; color:#1f4906">欢迎您-</span><br><span
-                style="color:#4a940d;">XuLi</span></div>
+        <div class="head-left"><span style="font-weight:bold; color:#1f4906">欢迎您-</span><br>
+            <span style="color:#4a940d;">${userInSession.name}</span></div>
         <div class="head-right">
             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
