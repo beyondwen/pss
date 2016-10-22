@@ -50,7 +50,7 @@ public class AuthInterceptor extends AbstractInterceptor {
         //获得resource的所有需要拦截的方法
         List<String> allResourceMethod = employeeService.findResourceMethod();
         List<String> loginUserResourceMethod = employeeService.findResourceByLogin(employee);
-        if (allResourceMethod.contains(allAccessActionNameMethod)) {
+        if (allResourceMethod.contains(allAccessActionNameMethod)||allResourceMethod.contains(allAccessActionNameMethodOfALL)) {
             if (loginUserResourceMethod.contains(allAccessActionNameMethod) || loginUserResourceMethod.contains(allAccessActionNameMethodOfALL)) {
                 return invocation.invoke();
             } else {
