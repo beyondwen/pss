@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -97,7 +98,7 @@ public class EmployeeAction extends CRUDAction {
         return RELOAD;
     }
 
-    @Override
+    /*@Override
     public String delete() throws Exception {
         HttpServletResponse response = ServletActionContext.getResponse();
         response.setContentType("text/json; charset=utf-8");
@@ -113,6 +114,25 @@ public class EmployeeAction extends CRUDAction {
             printWriter.write("{\"success\":false,\"msg\":\"异常:" + e.getMessage() + "\"}");
         }
         return NONE;
+    }*/
+
+    @Override
+    public String delete() throws Exception {
+        HashMap map = new HashMap();
+        map.put("success",false);
+        try {
+            if (id != null) {
+                employeeService.delete(id);
+                map.put("success",true);
+                map.put("msg","删除成功");
+            } else {
+                map.put("msg","id不存在");
+            }
+        } catch (Exception e) {
+            map.put("msg","异常:" + e.getMessage());
+        }
+        putContext("map",map);
+        return JSON_RESULT;
     }
 
     public String check() throws Exception {

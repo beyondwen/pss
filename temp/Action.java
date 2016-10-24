@@ -74,23 +74,24 @@ public class ${domain}Action extends CRUDAction {
         return RELOAD;
     }
 
-    @Override
-    public String delete() throws Exception {
-        HttpServletResponse response = ServletActionContext.getResponse();
-        response.setContentType("text/json; charset=utf-8");
-        PrintWriter printWriter = ServletActionContext.getResponse().getWriter();
+@Override
+public String delete()throws Exception{
+        HashMap map=new HashMap();
+        map.put("success",false);
         try {
-            if (id != null) {
-                ${lowerDomain}Service.delete(id);
-                printWriter.write("{\"success\":true,\"msg\":\"删除成功\"}");
-            } else {
-                printWriter.write("{\"success\":false,\"msg\":\"id不存在\"}");
-            }
-        } catch (Exception e) {
-            printWriter.write("{\"success\":false,\"msg\":\"异常:" + e.getMessage() + "\"}");
+        if(id!=null){
+        ${lowerDomain}Service.delete(id);
+        map.put("success",true);
+        map.put("msg","删除成功");
+        }else{
+        map.put("msg","id不存在");
         }
-        return NONE;
-    }
+        } catch (Exception e) {
+        map.put("msg","异常:"+e.getMessage());
+        }
+        putContext("map",map);
+        return JSON_RESULT;
+        }
 
     public PageResult<${domain}> getPageResult() {
         return pageResult;
