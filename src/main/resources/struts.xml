@@ -10,7 +10,7 @@
     <constant name="struts.ui.theme" value="simple"/>
     <constant name="struts.action.extension" value="action,,"/>
 
-    <package name="default" namespace="/" extends="struts-default">
+    <package name="default" namespace="/" extends="struts-default,json-default">
         <interceptors>
             <interceptor name="authInterceptor" class="com.wenhao.pss.web.interceptor.AuthInterceptor">
                 <param name="actions">LoginAction,LogoutAction</param>
@@ -28,6 +28,10 @@
             <result name="login">/WEB-INF/view/login.jsp</result>
             <result name="auth">/WEB-INF/view/auth.jsp</result>
             <result name="main" type="redirectAction">main</result>
+            <result name="jsonResult" type="json">
+                <param name="root">#map</param>
+                <param name="excludeNullProperties">true</param>
+            </result>
         </global-results>
         <!--主页面-->
         <action name="main">
@@ -41,7 +45,7 @@
 
         <action name="login_*" class="loginAction" method="{1}"/>
         <action name="logout" class="logoutAction"/>
-
+        <action name="left" class="leftAction"/>
         <!--employeeAction-->
         <action name="*_*" class="{1}Action" method="{2}">
             <result>/WEB-INF/view/{1}/{1}_list.jsp</result>

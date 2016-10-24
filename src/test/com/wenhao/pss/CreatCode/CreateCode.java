@@ -18,8 +18,8 @@ public class CreateCode {
     private boolean createCode = false;
 
     //1.那些domain需要生成代码
-    private String[] domains = {"Resource","Role"};
-    private String[] domainName = {"资源","角色"};
+    private String[] domains = {"Menu"};
+    private String[] domainName = {"菜单"};
     //2.定义固定的目录路径:都是使用相对路径,规范：路径前面都不加/,路径的后面都加/
     private static final String SRC = "src/main/java/";
     private static final String PACKAGE = "com/wenhao/pss/";

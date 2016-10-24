@@ -9,21 +9,9 @@
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
-    <bean id="baseDao" class="com.wenhao.pss.dao.BaseDao">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
+    <bean id="menuService" class="com.wenhao.pss.service.impl.MenuServiceImpl" parent="baseService"/>
 
-    <bean id="baseService" abstract="true" class="com.wenhao.pss.service.impl.BaseServiceImpl">
-        <property name="baseDao" ref="baseDao"/>
-    </bean>
-
-    <bean id="loginAction" class="com.wenhao.pss.web.LoginAction" scope="prototype">
-        <property name="employeeService" ref="employeeService"/>
-    </bean>
-
-    <bean id="logoutAction" class="com.wenhao.pss.web.LogoutAction" scope="prototype"/>
-
-    <bean id="leftAction" class="com.wenhao.pss.web.LeftAction" scope="prototype">
+    <bean id="menuAction" class="com.wenhao.pss.web.MenuAction" scope="prototype">
         <property name="menuService" ref="menuService"/>
     </bean>
 </beans>

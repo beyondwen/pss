@@ -12,6 +12,8 @@ public class Role extends EnityId {
 
     private Set<Resource> resources = new HashSet<Resource>();
 
+    private Set<Menu> menus = new HashSet<Menu>();
+
     public Role() {
     }
 
@@ -35,5 +37,13 @@ public class Role extends EnityId {
 
     public void setResources(Set<Resource> resources) {
         this.resources = resources;
+    }
+
+    public Set<Menu> getMenus() {
+        return menus;
+    }
+
+    public void setMenus(Set<Menu> menus) {
+        this.menus = menus;
     }
 }

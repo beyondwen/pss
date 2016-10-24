@@ -14,6 +14,7 @@ public abstract class BaseAction extends ActionSupport {
 
     public static final String RELOAD = "reload";
     public static final String USER_IN_SESSION = "userInSession";
+    public static final String JSON_RESULT = "jsonResult";
 
     protected void putContext(String key, Object o) {
         ActionContext.getContext().put(key, o);
